@@ -1,0 +1,131 @@
+/* 统计卡片样式 */
+
+.stat-card {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  border: 1px solid rgba(157, 139, 126, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.stat-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.stat-card-primary .stat-card-icon {
+  background: linear-gradient(135deg, #9d8b7e 0%, #b5a293 100%);
+}
+
+.stat-card-secondary .stat-card-icon {
+  background: linear-gradient(135deg, #b5a293 0%, #ddd3c3 100%);
+}
+
+.stat-card-tertiary .stat-card-icon {
+  background: linear-gradient(135deg, #7d6f63 0%, #9d8b7e 100%);
+}
+
+.stat-card-success .stat-card-icon {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+}
+
+.stat-card-trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stat-card-trend-up {
+  color: #10b981;
+}
+
+.stat-card-trend-down {
+  color: #ef4444;
+}
+
+.stat-card-trend-neutral {
+  color: #9d8b7e;
+}
+
+.stat-card-content {
+  margin-bottom: 12px;
+}
+
+.stat-card-label {
+  font-size: 13px;
+  color: #9d8b7e;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.stat-card-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #5f5550;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.stat-card-bar {
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(157, 139, 126, 0.3), transparent);
+  border-radius: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.stat-card-primary .stat-card-bar {
+  background: linear-gradient(90deg, transparent, #9d8b7e, transparent);
+}
+
+.stat-card-secondary .stat-card-bar {
+  background: linear-gradient(90deg, transparent, #b5a293, transparent);
+}
+
+.stat-card-tertiary .stat-card-bar {
+  background: linear-gradient(90deg, transparent, #7d6f63, transparent);
+}
+
+.stat-card-success .stat-card-bar {
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-card-value {
+    font-size: 24px;
+  }
+
+  .stat-card-icon {
+    width: 40px;
+    height: 40px;
+  }
+}

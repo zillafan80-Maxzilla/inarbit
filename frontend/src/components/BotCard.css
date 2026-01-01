@@ -1,0 +1,338 @@
+/* 机器人卡片样式 */
+
+.bot-card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid rgba(157, 139, 126, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bot-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* 卡片头部 */
+.bot-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.bot-card-title-section {
+  flex: 1;
+}
+
+.bot-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #5f5550;
+  margin: 0 0 8px 0;
+}
+
+.bot-card-strategy {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #fafaf8;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9d8b7e;
+}
+
+.bot-card-strategy.bot-card-status-running {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.bot-card-strategy.bot-card-status-stopped {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.bot-card-strategy.bot-card-status-paused {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.bot-card-strategy.bot-card-status-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* 菜单 */
+.bot-card-menu {
+  position: relative;
+}
+
+.bot-card-menu-btn {
+  background: none;
+  border: none;
+  color: #9d8b7e;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.bot-card-menu-btn:hover {
+  color: #5f5550;
+}
+
+.bot-card-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #e5ddd0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 140px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.bot-card-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  color: #5f5550;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.bot-card-dropdown-item:hover {
+  background: #fafaf8;
+}
+
+.bot-card-dropdown-danger {
+  color: #dc2626;
+}
+
+.bot-card-dropdown-danger:hover {
+  background: #fee2e2;
+}
+
+/* 状态指示 */
+.bot-card-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fafaf8;
+  border-radius: 8px;
+}
+
+.bot-card-status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.bot-card-status-indicator.bot-card-status-running {
+  background: #10b981;
+}
+
+.bot-card-status-indicator.bot-card-status-stopped {
+  background: #9ca3af;
+  animation: none;
+}
+
+.bot-card-status-indicator.bot-card-status-paused {
+  background: #f59e0b;
+}
+
+.bot-card-status-indicator.bot-card-status-error {
+  background: #ef4444;
+  animation: pulse-fast 1s infinite;
+}
+
+.bot-card-status-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5f5550;
+}
+
+/* 统计数据 */
+.bot-card-stats {
+  display: flex;
+  gap: 16px;
+}
+
+.bot-card-stat {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: #fafaf8;
+  border-radius: 8px;
+}
+
+.bot-card-stat-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #9d8b7e 0%, #b5a293 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.bot-card-stat-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.bot-card-stat-label {
+  font-size: 12px;
+  color: #9d8b7e;
+  margin: 0 0 4px 0;
+  font-weight: 500;
+}
+
+.bot-card-stat-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #5f5550;
+  margin: 0;
+  word-break: break-word;
+}
+
+/* 交易信息 */
+.bot-card-trades {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: #fafaf8;
+  border-radius: 8px;
+  gap: 0;
+}
+
+.bot-card-trade-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.bot-card-trade-label {
+  font-size: 12px;
+  color: #9d8b7e;
+  font-weight: 500;
+}
+
+.bot-card-trade-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #5f5550;
+}
+
+.bot-card-trade-divider {
+  width: 1px;
+  height: 24px;
+  background: #e5ddd0;
+}
+
+/* 操作按钮 */
+.bot-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.bot-card-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.bot-card-action-primary {
+  background: linear-gradient(135deg, #9d8b7e 0%, #b5a293 100%);
+  color: white;
+}
+
+.bot-card-action-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(157, 139, 126, 0.3);
+}
+
+.bot-card-action-secondary {
+  background: #fafaf8;
+  color: #5f5550;
+  border: 1px solid #e5ddd0;
+}
+
+.bot-card-action-secondary:hover {
+  background: #f5f1e8;
+  border-color: #9d8b7e;
+}
+
+/* 动画 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse-fast {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .bot-card {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .bot-card-title {
+    font-size: 15px;
+  }
+
+  .bot-card-stats {
+    flex-direction: column;
+  }
+
+  .bot-card-actions {
+    flex-direction: column;
+  }
+
+  .bot-card-action-btn {
+    padding: 9px 14px;
+    font-size: 12px;
+  }
+}
