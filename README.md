@@ -1,35 +1,74 @@
-# iNarbit - 三角套利机器人系统
+# iNarbit - 三角套利交易机器人
 
-一个完整的、生产就绪的三角套利机器人系统，支持Binance交易所，包含Web控制界面、虚拟盘和实盘交易功能。
-
-## 功能特性
-
-- 三角/四角/五角套利支持
-- Web控制界面
-- 虚拟盘测试环境
-- 实盘交易执行
-- 实时行情推送
-- 自动化部署
-- RESTful API
-- PostgreSQL数据库
-
-## 快速开始
-
-1. 克隆仓库
-2. 运行部署脚本
-3. 配置GitHub Secrets
-4. 推送代码到GitHub
-
-详见文档目录。
+完整的加密货币三角套利交易机器人系统，支持3/4/5角套利策略。
 
 ## 项目结构
 
-- backend/ - Go后端代码
-- frontend/ - React前端代码
-- database/ - 数据库脚本
-- scripts/ - 部署脚本
-- docs/ - 文档
+```
+inarbit/
+├── backend/          # Go后端服务
+│   ├── main.go       # 主入口
+│   ├── go.mod        # Go模块定义
+│   └── go.sum        # Go依赖锁定
+├── frontend/         # React前端应用
+│   ├── src/
+│   │   ├── main.jsx  # 入口文件
+│   │   ├── App.jsx   # 主应用组件
+│   │   └── index.css # 全局样式
+│   ├── package.json  # npm依赖
+│   ├── vite.config.js # Vite配置
+│   └── tailwind.config.js # Tailwind配置
+├── database/         # 数据库脚本
+├── scripts/          # 部署脚本
+└── docs/             # 文档
+```
+
+## 环境要求
+
+- Go 1.21+
+- Node.js 18+
+- npm 9+
+- PostgreSQL 12+
+
+## 本地开发
+
+### 后端
+
+```bash
+cd backend
+go mod download
+go run main.go
+```
+
+### 前端
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## 编译
+
+### 后端
+
+```bash
+cd backend
+go build -o inarbit-server main.go
+```
+
+### 前端
+
+```bash
+cd frontend
+npm install
+npm run build
+```
+
+## 部署
+
+详见部署文档。
 
 ## 许可证
 
-MIT License
+MIT

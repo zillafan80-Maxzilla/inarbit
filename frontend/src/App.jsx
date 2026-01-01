@@ -1,78 +1,108 @@
-import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { useAuthStore } from './store/authStore'
-import { useWebSocket } from './hooks/useWebSocket'
-
-// 页面组件
-import LoginPage from './pages/LoginPage'
-import DashboardPage from './pages/DashboardPage'
-import BotsPage from './pages/BotsPage'
-import StrategiesPage from './pages/StrategiesPage'
-import TradesPage from './pages/TradesPage'
-import SettingsPage from './pages/SettingsPage'
-import NotFoundPage from './pages/NotFoundPage'
-
-// 布局组件
-import Layout from './components/Layout'
-import ProtectedRoute from './components/ProtectedRoute'
-
-// 样式
-import './styles/index.css'
+import { useState, useEffect } from 'react'
+import './App.css'
 
 function App() {
-  const { isAuthenticated, checkAuth } = useAuthStore()
-  const [loading, setLoading] = useState(true)
-  const { connect } = useWebSocket()
+  const [count, setCount] = useState(0)
+  const [status, setStatus] = useState('loading')
 
   useEffect(() => {
-    // 检查认证状态
-    const initAuth = async () => {
-      await checkAuth()
-      setLoading(false)
-    }
-
-    initAuth()
-  }, [checkAuth])
-
-  useEffect(() => {
-    // 如果已认证，连接WebSocket
-    if (isAuthenticated) {
-      connect()
-    }
-  }, [isAuthenticated, connect])
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center w-full h-screen bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-slate-600 border-t-indigo-500 rounded-full animate-spin"></div>
-          <p className="text-slate-400">加载中...</p>
-        </div>
-      </div>
-    )
-  }
+    // 检查后端健康状态
+    fetch('/api/health')
+      .then(res => res.json())
+      .then(data => setStatus(data.status))
+      .catch(() => setStatus('error'))
+  }, [])
 
   return (
-    <Router>
-      <Routes>
-        {/* 登录页面 */}
-        <Route path="/login" element={<LoginPage />} />
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-amber-100">
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <h1 className="text-3xl font-bold text-amber-900">
+            iNarbit - 三角套利交易机器人
+          </h1>
+        </div>
+      </header>
 
-        {/* 受保护的路由 */}
-        <Route element={<ProtectedRoute />}>
-          <Route element={<Layout />}>
-            <Route path="/" element={<DashboardPage />} />
-            <Route path="/bots" element={<BotsPage />} />
-            <Route path="/strategies" element={<StrategiesPage />} />
-            <Route path="/trades" element={<TradesPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-          </Route>
-        </Route>
+      <main className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* 状态卡片 */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-lg font-semibold text-amber-900 mb-4">
+              系统状态
+            </h2>
+            <p className="text-2xl font-bold text-amber-600">
+              {status === 'ok' ? '✓ 正常' : status === 'loading' ? '加载中...' : '✗ 异常'}
+            </p>
+          </div>
 
-        {/* 404页面 */}
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
+          {/* 计数器 */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-lg font-semibold text-amber-900 mb-4">
+              测试计数器
+            </h2>
+            <button
+              onClick={() => setCount(count + 1)}
+              className="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded"
+            >
+              点击次数: {count}
+            </button>
+          </div>
+
+          {/* 信息卡片 */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-lg font-semibold text-amber-900 mb-4">
+              项目信息
+            </h2>
+            <p className="text-sm text-gray-600">
+              版本: 1.0.0<br/>
+              环境: Production<br/>
+              状态: 部署成功
+            </p>
+          </div>
+        </div>
+
+        {/* 功能区 */}
+        <div className="mt-12 bg-white rounded-lg shadow p-8">
+          <h2 className="text-2xl font-bold text-amber-900 mb-6">
+            主要功能
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border-l-4 border-amber-600 pl-4">
+              <h3 className="font-semibold text-amber-900 mb-2">
+                三角套利策略
+              </h3>
+              <p className="text-gray-600">
+                支持3/4/5角套利策略，自动识别套利机会
+              </p>
+            </div>
+            <div className="border-l-4 border-amber-600 pl-4">
+              <h3 className="font-semibold text-amber-900 mb-2">
+                实时监控
+              </h3>
+              <p className="text-gray-600">
+                实时数据更新，1秒到1小时可配置
+              </p>
+            </div>
+            <div className="border-l-4 border-amber-600 pl-4">
+              <h3 className="font-semibold text-amber-900 mb-2">
+                虚拟交易
+              </h3>
+              <p className="text-gray-600">
+                先用虚拟资金测试策略，降低风险
+              </p>
+            </div>
+            <div className="border-l-4 border-amber-600 pl-4">
+              <h3 className="font-semibold text-amber-900 mb-2">
+                性能优化
+              </h3>
+              <p className="text-gray-600">
+                针对2vCPU/4GB服务器优化
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   )
 }
 

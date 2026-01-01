@@ -1,26 +1,35 @@
+# 依赖
 node_modules/
 vendor/
-go.sum
+
+# 构建输出
 dist/
 build/
 *.o
 *.a
-inarbit-server
-logs/
-*.log
-*.tmp
-*.swp
-.DS_Store
-*.bak
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# IDE
 .vscode/
 .idea/
-*.iml
-*.sublime-project
-*.db
-*.sqlite
-*.key
-*.pem
-.cache/
-.eslintcache
-coverage/
-*.lcov
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 日志
+logs/
+*.log
+npm-debug.log*
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+
+# 二进制文件
+backend/inarbit-server
